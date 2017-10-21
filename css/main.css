@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: medium;
+    font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif;
+    color: #2c2c2c;
+    background-color: #fff;
+}
+
+
+.step-progress {
+    position: relative;
+    padding-left: 45px;
+    list-style: none;
+}
+.step-progress::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 10px;
+    height: 100%;
+    border-left: 3px dotted #CCC;
+}
+.step-progress-item {
+    position: relative;
+    counter-increment: list;
+    padding: 0px;
+}
+.step-progress-item:not(:last-child) {
+    padding-bottom: 50px;
+}
+.step-progress-item::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    left: -30px;
+    height: 100%;
+    width: 10px;
+}
+.step-progress-item::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: -44px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #CCC;
+    border-radius: 50%;
+    border-color: #00a680;
+    background-color: #FFF;
+}
+.step-progress-item.is-done::before {
+    /*border-left: 2px solid green;*/
+}
+.step-progress-item.is-done::after {
+    content: "\2713";
+    font-size: 34px;
+    font-weight: lighter;
+    color: #00a680;
+    border: none;
+}
+.step-progress-item.current::before {
+    /*border-left: 2px solid green;*/
+}
+
+.step-progress-item.current::after {
+    padding-top: 1px;
+    width: 30px;
+    height: 30px;
+    top: 0px;
+    left: -44px;
+    font-size: 14px;
+    text-align: center;
+    color: #00a680;
+    border: 1px solid #00a680;
+    background-color: #00a680;
+}
+.step-progress strong {
+    display: block;
+}
+
+.content-left{
+    border-right: 1px dashed #333;
+}
+.small-bold{
+    font-weight: bold;
+}
+.width-100 {
+    width: 100%;
+}
+.header h1 {
+    color: #000a12;
+}
+.margin-bottom {
+    margin-bottom: 20px;
+}
+.margin-bottom-small{
+    margin-bottom: 5px;
+}
+.deadline{
+    border-bottom: 1px solid #00a680;
+}
+.btn-success {
+    color: #ffffff;
+    background-color: #00a680;
+    border-color: #00a680;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #00a680;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}

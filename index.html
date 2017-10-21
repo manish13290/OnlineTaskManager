@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="onlinetaskmanager">
+    <head>
+        <meta charset="UTF-8">
+        <title>Online Task Manager</title>
+        <link href="css/lib/bootstrap.min.css" rel="stylesheet"></link>
+        <link href="css/main.css" rel="stylesheet">
+        <script type="text/javascript" src="js/lib/angular.min.js"></script>
+        <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+        <script src="js/online-task-manager.js"></script>
+    </head>
+    <body ng-controller="TaskManagerCtrl" ng-init="init();">
+        <div class="container">
+            <div class="row margin-bottom header">
+                <h1>Online Task Manager</h1>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-md-5 col-lg-3">
+                    <div class="content-left">
+                        <ul class="step-progress">
+                            <li ng-class="{'is-done':task.status == 3, 'current':task.status == 2}"
+                                class="step-progress-item" ng-repeat="task in taskList">
+                                <strong>{{task.label}}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-7 col-lg-9">
+                    <div class="content-right">
+                        <div class="row margin-bottom">
+                            <div class="col-md-6">
+                                <span class="small-bold">{{currentTask.name}}</span>
+                                <span>&#40;{{getStatusText(currentTask.status)}}&#41;</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="pull-right">
+                                    <button type="button" class="btn btn-success btn-md" ng-click="changeStatus(currentTask);taskSelect(currentIndex + 1);" ng-disabled="currentTask.status === 3">Mark as completed</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                <div>Deadline:</div>
+                                <div class="deadline">
+                                    <span ng-bind="currentTask.enddate | date:'d MMM y h:mm:ss a'"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9 col-md-9 col-lg-9">
+                                <div class="margin-bottom" ng-bind-html="currentTask.description"></div>
+                                <div class="margin-bottom">
+                                    <label class="btn btn-default btn-file">
+                                        Upload your file <input type="file" style="display: none;">
+                                    </label>
+                                </div>
+                                <div class="margin-bottom">Comments</div>
+                                <div class="margin-bottom form-group">
+                                    <textarea rows="4" class="form-control" ng-model="newComment.comment"></textarea>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="newComment.isAttentionRequired">Attention Required
+                                    </label>
+                                </div>
+                                <div class="margin-bottom">
+                                    <button type="button" class="btn btn-success btn-md" ng-click="addNewComment(newComment)">Submit</button>
+                                </div>
+                                <div class="margin-bottom">
+                                    <div ng-repeat="comment in taskCommentsMap[currentTask.id + '']">
+                                        <div class="margin-bottom-small">
+                                            <span><b>{{comment.author}}</b></span>&#40;
+                                            <span ng-bind="comment.date | date:'d MMM y h:mm:ss a'"></span>&#41;
+                                        </div>
+                                        <div class="" ng-bind-html="comment.comment"></div>
+                                        <hr ng-if="!$last">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
